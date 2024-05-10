@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Children, useState } from "react";
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { format } from "date-fns";
@@ -14,8 +14,21 @@ const Header = () => {
       startDate: new Date(),
       endDate: new Date(),
       key: "selection",
-    },
-  ]);
+    },]);
+    const [ openOptions, setOpenOptions] = useState(false);
+    const [option, setOption] = useState({
+      adult:1,
+      children:0,
+      room:1,  
+    });
+    const handleOption = (name, operation) => {
+      setOption((prev) => {
+        return {
+          ...prev,
+          [name]: operation === "i" ? prev[name] + 1 : prev[name] - 1,
+        };
+      });
+    };
   return (
     <div className="header">
       <div className="headerContainer">
@@ -64,7 +77,43 @@ const Header = () => {
           </div>
           <div className="headerSearchItem">
             <i className="bi bi-person-fill-add headerIcon"></i>
-            <span className="headerSearchText">2 adults 2 children 1 room</span>
+            <span className="headerSearchText">{`${option.adult} adult . ${option.Children} children ${option.room} room`}</span>
+            <div className="options">
+              <div className="optionsItem">
+                <span className="optionText">Adult</span>
+                <div className="optionCounter">
+                  
+                <button className="optionCounterButton"
+                onClick={()=> handleOption("adult", "d")}>-</button>
+                <span className="optionCounterNumber">{option.adult}</span>
+                <button className="optionCounterButton"
+                onClick={()=> handleOption("adult", "i")}>+</button>
+                </div>
+              </div>
+              <div className="optionsItem">
+                <span className="optionText">Children</span>
+                <div className="optionCounter">
+
+                <button className="optionCounterButton"
+                onClick={()=> handleOption("children", "d")}>-</button>
+                <span className="optionCounterNumber">{option.children}</span>
+                <button className="optionCounterButton"
+                onClick={()=> handleOption("children", "i")}>+</button>
+                </div>
+              </div>
+              <div className="optionsItem">
+                <span className="optionText">Room</span>
+                <div className="optionCounter">
+                  
+                <button className="optionCounterButton"
+                onClick={()=> handleOption("room", "d")}>-</button>
+                <span className="optionCounterNumber">{option.room}</span>
+                <button className="optionCounterButton"
+                onClick={()=> handleOption("room", "i")}>+</button>
+                </div>
+              </div>
+            </div>
+            
           </div>
           <div className="headerSearchItem">
             <button className="headerBtn">Search</button>
