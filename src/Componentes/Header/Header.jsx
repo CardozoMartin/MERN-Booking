@@ -77,13 +77,17 @@ const Header = () => {
           </div>
           <div className="headerSearchItem">
             <i className="bi bi-person-fill-add headerIcon"></i>
-            <span className="headerSearchText">{`${option.adult} adult . ${option.Children} children ${option.room} room`}</span>
+            <span
+            onClick={()=>setOpenOptions(!openOptions)}
+             className="headerSearchText">{`${option.adult} adult . ${option.Children} children ${option.room} room`}</span>
+           { openOptions &&
             <div className="options">
               <div className="optionsItem">
                 <span className="optionText">Adult</span>
                 <div className="optionCounter">
                   
                 <button className="optionCounterButton"
+                disabled={option.adult <= 1}
                 onClick={()=> handleOption("adult", "d")}>-</button>
                 <span className="optionCounterNumber">{option.adult}</span>
                 <button className="optionCounterButton"
@@ -95,6 +99,7 @@ const Header = () => {
                 <div className="optionCounter">
 
                 <button className="optionCounterButton"
+                disabled={option.children <= 0}
                 onClick={()=> handleOption("children", "d")}>-</button>
                 <span className="optionCounterNumber">{option.children}</span>
                 <button className="optionCounterButton"
@@ -106,6 +111,7 @@ const Header = () => {
                 <div className="optionCounter">
                   
                 <button className="optionCounterButton"
+                disabled={option.room <= 1}
                 onClick={()=> handleOption("room", "d")}>-</button>
                 <span className="optionCounterNumber">{option.room}</span>
                 <button className="optionCounterButton"
@@ -113,6 +119,7 @@ const Header = () => {
                 </div>
               </div>
             </div>
+           } 
             
           </div>
           <div className="headerSearchItem">

@@ -1,0 +1,29 @@
+.feature{
+    width: 100%;
+    min-width: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.featuredImg{
+    width: 100%;
+    object-fit: cover;
+}
+img{
+    width: 20em;
+    height: 20em;
+}
+.featuredItem{
+    position: relative;
+    color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 250px;
+}
+.featureTitles{
+   position: absolute;
+   bottom: 20px;
+   left: 20px;
+
+}
