@@ -5,6 +5,7 @@ import ListViews from './Views/ListViews'
 import HotelsViews from './Views/HotelsViews'
 import Navbar from './Componentes/Common/Navbar'
 import Header from './Componentes/Header/Header'
+import Footer from './Componentes/Footer/Footer'
 
 
 export const Router = () => {
@@ -17,6 +18,7 @@ export const Router = () => {
                 <Route path='/hotels' element={<ListViews></ListViews>}></Route>
                 <Route path='/hotels/:id' element={<HotelsViews></HotelsViews>}></Route>
             </Routes>
+            <Footer/>
         </BrowserRouter>
     )
 }
